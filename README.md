@@ -1,8 +1,8 @@
 
-=== Prerequisites ===
+## Prerequisites ##
 You need to have `docker` and `docker-compose` installed on your machine.
 
-=== Usage ==
+## Usage ##
 Running agent
 
 ```CALLBACK_URL="https://mycompany.com/path/hook" ACCESS_TOKEN=my_token docker-compose up```
@@ -23,11 +23,11 @@ Deleted: sha256:232a08af0d7fb266efc95730c961b4a4bad01410435d7098f5b7544df2618015
 Deleted: sha256:92a8b906452d68ade630247d1adaf3290ef16bdca076ca1ea79db340db54e299
 ```
 
-=== Common errors ===
+## Common errors ##
 ```
 app    | Caused by: feign.FeignException$Unauthorized: [401 Unauthorized] during [POST] to [https://b2b.taxi.yandex.net/b2b/cargo/integration/v1/claims/journal] [B2bClient#readJournal(JournalRequest)]: [{"code":"unauthorized","message":"Access denied"}]
 ```
-Reason: ACCESS_TOKEN parameter may be invalid.
+Reason: `ACCESS_TOKEN` parameter may be invalid.
 
 ```
 app    | 2022-06-09 16:33:48.263 ERROR 1 --- [           main] r.y.delivery.agent.AgentApplication      : Hook notification error
