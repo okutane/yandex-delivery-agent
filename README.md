@@ -1,11 +1,32 @@
 
 ## Prerequisites ##
 You need to have `docker` and `docker-compose` installed on your machine.
+Please refer to the following links for installation guide:
+https://docs.docker.com/compose/install/compose-desktop/
+https://docs.docker.com/compose/install/
 
 ## Usage ##
-Running agent
+Running agent in detached mode.
 
-```CALLBACK_URL="https://mycompany.com/path/hook" ACCESS_TOKEN=my_token docker-compose up```
+```CALLBACK_URL="https://mycompany.com/path/hook" ACCESS_TOKEN=my_token docker-compose up -d```
+You should see something like this in your console:
+```
+Creating network "agent_default" with the default driver
+Creating db ... done
+Creating app ... done
+```
+
+To ensure everything is fine you should check service logs
+```
+$ docker-compose logs app
+Attaching to app
+     ...
+app    | 2022-06-15 14:26:15.754  INFO 1 --- [           main] r.y.delivery.agent.AgentApplication      : Got 27 new events.
+app    | 2022-06-15 14:34:58.506  INFO 1 --- [   scheduling-1] r.y.delivery.agent.AgentApplication      : Got 0 new events.
+app    | 2022-06-15 14:34:58.506  INFO 1 --- [   scheduling-1] r.y.delivery.agent.AgentApplication      : Cursor wasn't changed.
+app    | 2022-06-15 14:35:59.504  INFO 1 --- [   scheduling-1] r.y.delivery.agent.AgentApplication      : Got 0 new events.
+app    | 2022-06-15 14:35:59.504  INFO 1 --- [   scheduling-1] r.y.delivery.agent.AgentApplication      : Cursor wasn't changed.
+```
 
 Removing app container and image before rebuild. (Needed if code is changed)
 ```

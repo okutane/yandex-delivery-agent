@@ -61,9 +61,14 @@ public class AgentApplication {
 		LOGGER.info("Got " + response.events.length + " new events.");
 
 		for (JournalEvent event : response.events) {
+			if (!"status_changed".equals(event.change_type)) {
+				continue; // only notify about status changes.
+			}
+
 			Map<String, String> map = new LinkedHashMap<>();
 			map.put("claim_id", event.claim_id);
 			map.put("change_type", event.change_type);
+			map.put("new_status", event.new_status);
 			map.put("updated_ts", event.updated_ts);
 
 			try {
